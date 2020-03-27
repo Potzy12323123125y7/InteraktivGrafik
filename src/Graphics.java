@@ -94,8 +94,8 @@ public class Graphics extends Canvas implements Runnable {
         */
         t += Math.PI/180;
 
-        int x = (int)(width/2+(width/2-s.getWidth())*Math.sin(t));
-        int y = (int)(height/2+(height/2-s.getHeight())*Math.cos(t));
+        int x = (int)(width/2+(width/2-s.getWidth())*2*Math.sin(t));
+        int y = (int)(height/2+(height/2-s.getHeight())*0.8*Math.cos(t));
 
         for (int i = 0 ; i < s.getHeight() ; i++) {
             for (int j = 0 ; j < s.getWidth() ; j++) {
