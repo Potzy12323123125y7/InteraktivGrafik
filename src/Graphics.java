@@ -1,9 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -27,7 +24,7 @@ public class Graphics extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
     private int fps = 60;
-    private int ups = 30;
+    private int ups = 60;
 
     private Sprite s;
     private Sprite square1;
@@ -77,7 +74,9 @@ public class Graphics extends Canvas implements Runnable {
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
         g.dispose();
         bs.show();
+
     }
+
 
     private void update() {
         /*
@@ -94,8 +93,19 @@ public class Graphics extends Canvas implements Runnable {
         */
         t += Math.PI/180;
 
-        int x = (int)(width/2+(width/2-s.getWidth())*2*Math.sin(t));
+        int x = (int)(width/2+(width/2-s.getWidth())*2.1*Math.sin(t));
         int y = (int)(height/2+(height/2-s.getHeight())*0.8*Math.cos(t));
+
+        if (x >= 400) {
+            for (int i = 0; i < 10 ; i++) {
+
+                x = (int)-(width/2+(width/2-s.getWidth())*2.1*Math.sin(t));
+            }
+        }
+        if (10 >= x) {
+            x = (int)(height/2+(height/2-s.getHeight())*0.8*Math.cos(t));
+        }
+
 
         for (int i = 0 ; i < s.getHeight() ; i++) {
             for (int j = 0 ; j < s.getWidth() ; j++) {
